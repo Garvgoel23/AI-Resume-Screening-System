@@ -1,23 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+
 import { extractTextFromPDF } from '../services/pdfService';
 import { analyzeResumesWithGemini } from '../services/geminiService';
 
 export const analyzeRouter = Router();
 
-// ── Multer Configuration ──────────────────────────────────────────────────────
-const uploadsDir = path.join(__dirname, '../../uploads');
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => cb(null, uploadsDir),
-  filename: (_req, file, cb) => {
-    const unique = `${Date.now()}-${Math.round(Math.random() * 1e6)}`;
-    cb(null, `${unique}-${file.originalname}`);
-  },
-});
+const storage = multer.memoryStorage();
 
 const pdfFilter: multer.Options['fileFilter'] = (_req, file, cb) => {
   if (file.mimetype === 'application/pdf' || file.originalname.endsWith('.pdf')) {
@@ -33,11 +22,9 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB per file
 });
 
-// Helper: delete files after processing to keep uploads/ clean
-const cleanUp = (files: Express.Multer.File[]) => {
-  files.forEach((f) => fs.unlink(f.path, (err) => {
-    if (err) console.warn(`⚠️  Could not delete temp file: ${f.path}`);
-  }));
+// Helper: delete files after processing to keep uploads/ clean (No-op for memory storage)
+const cleanUp = (_files: Express.Multer.File[]) => {
+  // Files are kept in memory and garbage-collected automatically
 };
 
 // ── POST /api/upload-jd ───────────────────────────────────────────────────────
@@ -54,7 +41,7 @@ analyzeRouter.post(
 
       if (req.file) {
         // PDF upload path
-        const buffer = fs.readFileSync(req.file.path);
+        const buffer = req.file.buffer;
         jdText = await extractTextFromPDF(buffer);
         cleanUp([req.file]);
       } else if (req.body?.jdText) {
@@ -96,7 +83,7 @@ analyzeRouter.post(
 
       const summaries = await Promise.all(
         files.map(async (f) => {
-          const buffer = fs.readFileSync(f.path);
+          const buffer = f.buffer;
           const text = await extractTextFromPDF(buffer);
           return { fileName: f.originalname, textLength: text.length };
         })
@@ -137,7 +124,7 @@ analyzeRouter.post(
       if (fields?.jdFile?.[0]) {
         const jdFile = fields.jdFile[0];
         uploadedFiles.push(jdFile);
-        const buffer = fs.readFileSync(jdFile.path);
+        const buffer = jdFile.buffer;
         jdText = await extractTextFromPDF(buffer);
       }
 
@@ -156,7 +143,7 @@ analyzeRouter.post(
 
       const resumes = await Promise.all(
         resumeFiles.map(async (f) => {
-          const buffer = fs.readFileSync(f.path);
+          const buffer = f.buffer;
           const text = await extractTextFromPDF(buffer);
           return { fileName: f.originalname, text };
         })

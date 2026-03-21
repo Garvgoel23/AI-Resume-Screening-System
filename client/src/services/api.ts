@@ -6,7 +6,7 @@ import type { AnalyzeResponse } from '../types';
  * In development, Vite proxies /api → http://localhost:3001 (see vite.config.ts).
  */
 const api = axios.create({
-  baseURL: '/',
+  baseURL: 'https://ai-resume-screening-system-two.vercel.app',
   timeout: 300000, // 5-minute timeout to allow backend rate-limit retries
 });
 
