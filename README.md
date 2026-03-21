@@ -21,16 +21,19 @@ This project addresses the critical HR challenge of **resume screening at scale*
 <summary>Click to view screenshots</summary>
 
 ### 1. Landing Page
-![Landing Page](screenshots/landing-page.png)
+![Landing Page](screenshots/1-landing.png)
 
 ### 2. Upload Interface (Job Description & Candidates)
-![Upload Interface](screenshots/upload-interface.png)
+![Upload Interface](screenshots/2-upload.png)
 
 ### 3. AI Processing State
-![Processing State](screenshots/processing-state.png)
+![Processing State](screenshots/3-processing.png)
 
-### 4. Candidate Ranking & Analysis Dashboard
-![Results Dashboard](screenshots/results-dashboard.png)
+### 4. Candidate Results Overview
+![Results Dashboard Overview](screenshots/4-results.png)
+
+### 5. Candidate Ranking Details
+![Results Dashboard Ranking](screenshots/5-ranking.png)
 
 </details>
 
