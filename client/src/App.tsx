@@ -132,7 +132,7 @@ const App: React.FC = () => {
               className="font-bold text-xl tracking-tight"
               style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
             >
-              Resume<span className="gradient-text">Screener</span>
+              Skill<span className="gradient-text">Match</span>
             </span>
           </div>
 
@@ -333,7 +333,7 @@ const App: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">
           {/* Large Outline Title */}
-          <h2 className="footer-outline-text">ResumeScreener</h2>
+          <h2 className="footer-outline-text">SkillMatch</h2>
 
           {/* Tagline */}
           <p className="text-base max-w-md" style={{ color: 'var(--text-secondary)' }}>
