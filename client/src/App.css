@@ -5,7 +5,8 @@
   font-size: clamp(2.5rem, 8vw, 6rem);
   line-height: 1.1;
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--border-secondary);
+  -webkit-text-stroke: 1px var(--border-secondary);
+  paint-order: stroke fill;
   letter-spacing: 0.02em;
   user-select: none;
   transition: all 0.4s ease;
@@ -13,8 +14,7 @@
 }
 
 .footer-outline-text:hover {
-  -webkit-text-stroke: 1.5px var(--accent-blue);
-  color: rgba(59, 130, 246, 0.05);
+  -webkit-text-stroke: 1px var(--accent-blue);
   text-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
 }
 
