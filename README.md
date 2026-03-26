@@ -22,20 +22,17 @@ This project addresses the critical HR challenge of **resume screening at scale*
 <details>
 <summary>Click to view screenshots</summary>
 
-### 1. Landing Page
-![Landing Page](screenshots/1-landing.png)
+### 1. Landing Page — Dark Mode Hero
+![Landing Page](screenshots/Screenshot%202026-03-26%20152606.png)
 
-### 2. Upload Interface (Job Description & Candidates)
-![Upload Interface](screenshots/2-upload.png)
+### 2. Upload Interface — Job Description & Candidates
+![Upload Interface](screenshots/Screenshot%202026-03-26%20152632.png)
 
-### 3. AI Processing State
-![Processing State](screenshots/3-processing.png)
+### 3. Results Dashboard — Top Talent Overview
+![Results Dashboard](screenshots/Screenshot%202026-03-26%20152724.png)
 
-### 4. Candidate Results Overview
-![Results Dashboard Overview](screenshots/4-results.png)
-
-### 5. Candidate Ranking Details
-![Results Dashboard Ranking](screenshots/5-ranking.png)
+### 4. Candidate Analysis — Ranking, Strengths & Gaps
+![Candidate Analysis](screenshots/Screenshot%202026-03-26%20152744.png)
 
 </details>
 
@@ -226,13 +223,14 @@ For each candidate, the system provides:
 
 ## 🎨 Design Philosophy
 
-The UI follows a **minimalist, SaaS-inspired design**:
+The UI follows a **modern, dark-first SaaS design** inspired by [ru-ok.in](https://ru-ok.in/):
 
-- **Clean Light Theme** — Slate/zinc color palette inspired by Shadcn UI
-- **Premium Typography** — Outfit font family for a modern, professional feel
-- **Micro-Animations** — Typewriter hero text, smooth transitions, and hover effects
+- **Dark/Light Mode** — Toggle between dark and light themes with smooth transitions, persisted in localStorage
+- **Premium Typography** — Playfair Display (serif) for headings, Outfit for UI text
+- **Animated Gradient Hero** — Eye-catching gradient wave background with typewriter text effect
+- **Radial Score Charts** — Custom SVG donut charts for candidate score visualization
 - **Responsive Layout** — Fully responsive across desktop, tablet, and mobile
-- **Accessible** — Semantic HTML with proper ARIA labels and keyboard navigation
+- **ru-ok.in-Style Footer** — Large outline text, "Built by" avatar section, and GitHub source link
 
 ---
 
