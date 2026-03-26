@@ -1,6 +1,6 @@
 # AI-Powered Resume Screening & Candidate Ranking System
 
-🚀 **Live Deployment:** [https://ai-resume-screening-system-pa7i.vercel.app/](https://ai-resume-screening-system-pa7i.vercel.app/)
+🚀 **Live Deployment:** [https://skill--match.vercel.app](https://skill--match.vercel.app/)
 
 An intelligent HR automation platform that leverages Google's Gemini API with a modern React + Node.js full-stack architecture to streamline resume screening, candidate ranking, and hiring decisions — reducing manual effort by over 80% while eliminating bias.
 
