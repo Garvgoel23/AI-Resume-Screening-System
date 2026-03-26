@@ -29,19 +29,38 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
   return (
     <div className="saas-card p-6 h-full flex flex-col space-y-6">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div
+        className="flex flex-wrap items-center justify-between gap-4 pb-4"
+        style={{ borderBottom: '1px solid var(--border-primary)' }}
+      >
         <div className="flex items-center gap-3 min-w-[150px] flex-1">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-xl shadow-sm border border-blue-100 shrink-0">
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
+            style={{
+              background: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+            }}
+          >
             📝
           </div>
           <div className="min-w-0">
-            <h2 className="text-slate-900 font-outfit font-bold text-lg tracking-tight truncate">Job Description</h2>
-            <p className="text-slate-500 text-xs font-medium truncate">Paste text or upload PDF</p>
+            <h2
+              className="font-bold text-lg tracking-tight truncate"
+              style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+            >
+              Job Description
+            </h2>
+            <p className="text-xs font-medium truncate" style={{ color: 'var(--text-muted)' }}>
+              Paste text or upload PDF
+            </p>
           </div>
         </div>
 
         {/* Mode Toggle */}
-        <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200 shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
+        <div
+          className="flex p-1 rounded-lg shrink-0 w-full sm:w-auto mt-2 sm:mt-0"
+          style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)' }}
+        >
           {(['text', 'pdf'] as const).map((m) => (
             <button
               key={m}
@@ -51,11 +70,13 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                 if (m === 'text') onFileChange(null);
                 if (m === 'pdf') onTextChange('');
               }}
-              className={`flex-1 sm:flex-none px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200 ${
-                mode === m
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200/50'
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
+              className="flex-1 sm:flex-none px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
+              style={{
+                background: mode === m ? 'var(--bg-card)' : 'transparent',
+                color: mode === m ? 'var(--text-primary)' : 'var(--text-muted)',
+                boxShadow: mode === m ? 'var(--shadow-card)' : 'none',
+                border: mode === m ? '1px solid var(--border-primary)' : '1px solid transparent',
+              }}
             >
               {m === 'text' ? 'Text Input' : 'PDF Upload'}
             </button>
@@ -65,7 +86,6 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
 
       {/* Content Area */}
       <div className="flex-1 min-h-[240px]">
-        {/* Text Mode */}
         {mode === 'text' && (
           <textarea
             id="jd-textarea"
@@ -76,47 +96,75 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
           />
         )}
 
-        {/* PDF Mode */}
         {mode === 'pdf' && (
           <div
             {...getRootProps()}
             id="jd-pdf-dropzone"
-            className={`h-full min-h-[240px] border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-200 group ${
-              isDragActive
-                ? 'border-slate-900 bg-slate-50 scale-[0.99]'
+            className="h-full min-h-[240px] border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-200 group"
+            style={{
+              borderColor: isDragActive
+                ? 'var(--accent-blue)'
                 : jdFile
-                ? 'border-emerald-500/30 bg-emerald-50/50'
-                : 'border-slate-300 hover:border-slate-400 hover:bg-slate-50'
-            }`}
+                ? 'var(--badge-strong-border)'
+                : 'var(--border-secondary)',
+              background: isDragActive
+                ? 'rgba(59, 130, 246, 0.05)'
+                : jdFile
+                ? 'var(--badge-strong-bg)'
+                : 'transparent',
+            }}
           >
             <input {...getInputProps()} id="jd-pdf-input" />
             {jdFile ? (
-              <div className="text-center space-y-4 animate-in fade-in zoom-in duration-300">
-                <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center text-3xl mx-auto border border-emerald-200 shadow-sm">
+              <div className="text-center space-y-4 animate-fade-in">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto"
+                  style={{
+                    background: 'var(--badge-strong-bg)',
+                    border: '1px solid var(--badge-strong-border)',
+                  }}
+                >
                   📄
                 </div>
                 <div>
-                  <p className="text-emerald-700 font-bold text-sm truncate max-w-[200px] mx-auto">{jdFile.name}</p>
-                  <p className="text-emerald-600/70 text-[10px] font-bold uppercase tracking-widest mt-1">{(jdFile.size / 1024).toFixed(1)} KB</p>
+                  <p className="font-bold text-sm truncate max-w-[200px] mx-auto" style={{ color: 'var(--badge-strong-text)' }}>
+                    {jdFile.name}
+                  </p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mt-1" style={{ color: 'var(--text-muted)' }}>
+                    {(jdFile.size / 1024).toFixed(1)} KB
+                  </p>
                 </div>
                 <button
                   id="jd-pdf-remove"
                   onClick={(e) => { e.stopPropagation(); onFileChange(null); }}
-                  className="px-4 py-1.5 rounded-lg bg-white border border-slate-200 text-red-500 text-xs font-bold hover:bg-red-50 transition-colors shadow-sm"
+                  className="px-4 py-1.5 rounded-lg text-xs font-bold transition-colors"
+                  style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-primary)',
+                    color: 'var(--badge-weak-text)',
+                  }}
                 >
                   Remove File
                 </button>
               </div>
             ) : (
               <div className="text-center space-y-3 group-hover:scale-105 transition-transform duration-300">
-                <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-3xl mx-auto border border-slate-200 shadow-sm group-hover:border-slate-300 group-hover:text-slate-900 transition-all">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto transition-all"
+                  style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-primary)',
+                  }}
+                >
                   {isDragActive ? '📂' : '📥'}
                 </div>
                 <div>
-                  <p className="text-slate-700 font-bold text-sm">
+                  <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
                     {isDragActive ? 'Drop JD PDF here' : 'Click or drag JD PDF'}
                   </p>
-                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-2">Max 10 MB • PDF Only</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mt-2" style={{ color: 'var(--text-muted)' }}>
+                    Max 10 MB • PDF Only
+                  </p>
                 </div>
               </div>
             )}
@@ -125,7 +173,14 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
       </div>
 
       <div className="pt-2">
-        <p className="text-[10px] text-slate-500 font-medium leading-tight text-center bg-slate-50 p-2 rounded-lg border border-slate-100">
+        <p
+          className="text-[10px] font-medium leading-tight text-center p-2 rounded-lg"
+          style={{
+            color: 'var(--text-muted)',
+            background: 'var(--bg-elevated)',
+            border: '1px solid var(--border-primary)',
+          }}
+        >
           💡 Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
         </p>
       </div>

@@ -15,7 +15,6 @@ const formatSize = (bytes: number) => {
 const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange }) => {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      // Merge with existing, avoid duplicates by name
       const existing = new Set(files.map((f) => f.name));
       const newFiles = acceptedFiles.filter((f) => !existing.has(f.name));
       onFilesChange([...files, ...newFiles]);
@@ -36,18 +35,41 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
   return (
     <div className="saas-card p-6 h-full flex flex-col space-y-6">
       {/* Header */}
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div
+        className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pb-4"
+        style={{ borderBottom: '1px solid var(--border-primary)' }}
+      >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-xl shadow-sm border border-slate-100 shrink-0">
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
+            style={{
+              background: 'rgba(139, 92, 246, 0.1)',
+              border: '1px solid rgba(139, 92, 246, 0.2)',
+            }}
+          >
             👥
           </div>
           <div className="min-w-0">
-            <h2 className="text-slate-900 font-outfit font-bold text-lg tracking-tight truncate">Candidate Resumes</h2>
-            <p className="text-slate-500 text-xs font-medium truncate">Bulk upload PDFs</p>
+            <h2
+              className="font-bold text-lg tracking-tight truncate"
+              style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+            >
+              Candidate Resumes
+            </h2>
+            <p className="text-xs font-medium truncate" style={{ color: 'var(--text-muted)' }}>
+              Bulk upload PDFs
+            </p>
           </div>
         </div>
         {files.length > 0 && (
-          <div className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-600 uppercase tracking-wider animate-in fade-in slide-in-from-right-2 shrink-0 self-start xl:self-auto">
+          <div
+            className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider animate-fade-in shrink-0 self-start xl:self-auto"
+            style={{
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-primary)',
+              color: 'var(--text-secondary)',
+            }}
+          >
             {files.length} {files.length === 1 ? 'Resume' : 'Resumes'}
           </div>
         )}
@@ -58,22 +80,28 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
         <div
           {...getRootProps()}
           id="resume-dropzone"
-          className={`relative border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-200 group ${
-            isDragActive
-              ? 'border-slate-900 bg-slate-50 scale-[0.99]'
-              : 'border-slate-300 hover:border-slate-400 hover:bg-slate-50'
-          }`}
+          className="relative border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-200 group"
+          style={{
+            borderColor: isDragActive ? 'var(--accent-blue)' : 'var(--border-secondary)',
+            background: isDragActive ? 'rgba(59, 130, 246, 0.05)' : 'transparent',
+          }}
         >
           <input {...getInputProps()} id="resume-file-input" />
           <div className="text-center space-y-3 group-hover:scale-105 transition-transform duration-300">
-            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-3xl mx-auto border border-slate-200 shadow-sm group-hover:border-slate-300 group-hover:text-slate-900 transition-all">
+            <div
+              className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto transition-all"
+              style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-primary)',
+              }}
+            >
               {isDragActive ? '📂' : '📎'}
             </div>
             <div>
-              <p className="text-slate-700 font-bold text-sm">
+              <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
                 {isDragActive ? 'Release to upload' : 'Click or drag resumes'}
               </p>
-              <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-2 px-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest mt-2 px-4" style={{ color: 'var(--text-muted)' }}>
                 PDF format • Up to 10 MB per file
               </p>
             </div>
@@ -82,12 +110,17 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
 
         {/* File List */}
         {files.length > 0 && (
-          <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <div className="space-y-3 animate-fade-in">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Queued for Analysis</span>
-              <button 
+              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+                Queued for Analysis
+              </span>
+              <button
                 onClick={() => onFilesChange([])}
-                className="text-[10px] font-bold text-slate-500 hover:text-red-500 transition-colors uppercase tracking-widest"
+                className="text-[10px] font-bold uppercase tracking-widest transition-colors"
+                style={{ color: 'var(--text-muted)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--badge-weak-text)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
               >
                 Clear All
               </button>
@@ -96,21 +129,44 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
               {files.map((file, i) => (
                 <div
                   key={file.name + i}
-                  className="flex items-center justify-between bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-sm group/item hover:border-slate-300 hover:shadow-md transition-all"
+                  className="flex items-center justify-between rounded-xl px-4 py-3 group/item transition-all"
+                  style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-primary)',
+                    boxShadow: 'var(--shadow-card)',
+                  }}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-500 text-xs font-bold shrink-0">
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold shrink-0"
+                      style={{
+                        background: 'var(--bg-elevated)',
+                        border: '1px solid var(--border-primary)',
+                        color: 'var(--text-muted)',
+                      }}
+                    >
                       {i + 1}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-slate-900 text-sm font-bold truncate">{file.name}</p>
-                      <p className="text-slate-500 text-[10px] font-medium mt-0.5">{formatSize(file.size)}</p>
+                      <p className="text-sm font-bold truncate" style={{ color: 'var(--text-primary)' }}>{file.name}</p>
+                      <p className="text-[10px] font-medium mt-0.5" style={{ color: 'var(--text-muted)' }}>{formatSize(file.size)}</p>
                     </div>
                   </div>
                   <button
                     id={`remove-resume-${i}`}
                     onClick={(e) => { e.stopPropagation(); removeFile(file.name); }}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:bg-red-50 hover:text-red-500 border border-transparent hover:border-red-100 transition-all"
+                    className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
+                    style={{ color: 'var(--text-muted)', border: '1px solid transparent' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = 'var(--badge-weak-text)';
+                      e.currentTarget.style.background = 'var(--badge-weak-bg)';
+                      e.currentTarget.style.borderColor = 'var(--badge-weak-border)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--text-muted)';
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.borderColor = 'transparent';
+                    }}
                     title="Remove"
                   >
                     ✕
@@ -123,7 +179,14 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
       </div>
 
       <div className="pt-2">
-        <p className="text-[10px] text-slate-500 font-medium leading-tight text-center bg-slate-50 p-2 rounded-lg border border-slate-100">
+        <p
+          className="text-[10px] font-medium leading-tight text-center p-2 rounded-lg"
+          style={{
+            color: 'var(--text-muted)',
+            background: 'var(--bg-elevated)',
+            border: '1px solid var(--border-primary)',
+          }}
+        >
           🔒 Your files are processed securely and deleted immediately after the analysis session ends.
         </p>
       </div>
