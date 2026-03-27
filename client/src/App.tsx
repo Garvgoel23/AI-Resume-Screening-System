@@ -7,7 +7,7 @@ import ResultsDashboard from './components/ResultsDashboard';
 import { analyzeResumes } from './services/api';
 import type { CandidateAnalysis } from './types';
 import { useTheme } from './contexts/ThemeContext';
-import { Sparkles, Rocket, Target, Zap, Gem, AlertTriangle, Check, Circle, Sun, Moon } from 'lucide-react';
+import { Sparkles, Target, Zap, Gem, AlertTriangle, Check, Circle, Sun, Moon, ArrowRight } from 'lucide-react';
 
 // ── Typewriter Component ────────────────────────────────────
 const Typewriter: React.FC<{ text: string; delay?: number; startDelay?: number }> = ({ text, delay = 60, startDelay = 0 }) => {
@@ -73,6 +73,7 @@ const App: React.FC = () => {
   const handleAnalyze = async () => {
     setAppState('loading');
     setErrorMsg('');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
       const response = await analyzeResumes(jdText, jdFile, resumeFiles);
       setResults(response.candidates);
@@ -108,7 +109,12 @@ const App: React.FC = () => {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <button
+            className="flex items-center gap-3 cursor-pointer bg-transparent border-none p-0"
+            onClick={handleReset}
+            title="Go to Home"
+            style={{ outline: 'none' }}
+          >
             <img src="/vite.svg" className="w-8 h-8" alt="Logo" />
             <span
               className="font-bold text-xl tracking-tight"
@@ -116,7 +122,7 @@ const App: React.FC = () => {
             >
               Skill<span className="gradient-text">Match</span>
             </span>
-          </div>
+          </button>
 
           <div className="flex items-center gap-4">
             <button
@@ -127,8 +133,8 @@ const App: React.FC = () => {
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={18} />}
             </button>
-            <button className="rainbow-border-btn hidden sm:block" onClick={scrollToInput}>
-              Get Started
+            <button className="get-started-pill nav-pill hidden sm:flex items-center gap-2" onClick={scrollToInput}>
+              Get Started <ArrowRight size={14} />
             </button>
           </div>
         </div>
@@ -174,10 +180,12 @@ const App: React.FC = () => {
                 </p>
 
                 <button
-                  className="btn-primary px-8 py-4 text-base rounded-full flex items-center gap-2"
+                  className="get-started-pill flex items-center gap-2.5"
                   onClick={scrollToInput}
                 >
-                  <Rocket size={18} /> Start Analyzing
+                  <span className="pill-dot" />
+                  Get Started
+                  <ArrowRight size={16} />
                 </button>
               </div>
             </div>
