@@ -54,12 +54,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
   const offset = circumference - (candidate.matchScore / 100) * circumference;
 
   return (
-    <div className="saas-card saas-card-hover group relative overflow-hidden transition-all duration-500">
-      {/* Left accent bar */}
-      <div
-        className="absolute top-0 left-0 w-1.5 h-full opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{ background: 'var(--accent-blue)' }}
-      />
+    <div className="candidate-card-glow saas-card group relative overflow-hidden transition-all duration-500">
 
       <div className="p-8">
         <div className="flex flex-col xl:flex-row gap-10 items-start">

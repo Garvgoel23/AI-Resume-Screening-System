@@ -154,21 +154,17 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
 
       {/* ── Top Level Metrics ── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Best Candidate - Accent Card */}
-        <div
-          className="saas-card p-8 relative overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-indigo))',
-            border: 'none',
-          }}
-        >
-          <div className="absolute top-0 right-0 w-32 h-32 rounded-bl-full -mr-8 -mt-8 -z-10" style={{ background: 'rgba(255,255,255,0.1)' }} />
+        {/* Best Candidate */}
+        <div className="saas-card saas-card-hover p-8">
           <div className="flex items-start gap-5">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center text-xl shadow-inner" style={{ background: 'rgba(255,255,255,0.15)', color: '#ffffff' }}><Star size={22} /></div>
+            <div
+              className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
+              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--text-primary)' }}
+            ><Star size={22} /></div>
             <div className="min-w-0">
-              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.7)' }}>Highest Potential</p>
-              <p className="text-lg font-bold truncate" style={{ fontFamily: "'Outfit', sans-serif", color: '#ffffff' }}>{bestCandidate?.candidateName}</p>
-              <p className="text-xs font-bold mt-1" style={{ color: 'rgba(255,255,255,0.8)' }}>{bestCandidate?.matchScore}% Match Score</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>Highest Potential</p>
+              <p className="text-lg font-bold truncate" style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{bestCandidate?.candidateName}</p>
+              <p className="text-xs font-bold mt-1" style={{ color: 'var(--text-secondary)' }}>{bestCandidate?.matchScore}% Match Score</p>
             </div>
           </div>
         </div>
@@ -240,8 +236,8 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           </div>
 
           {/* Verdict Summary */}
-          <div className="saas-card p-6" style={{ background: 'var(--bg-elevated)' }}>
-            <h4 className="text-sm font-bold mb-6 uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>Verdict Summary</h4>
+          <div className="saas-card p-6">
+            <h4 className="text-sm font-bold mb-6 pb-3 uppercase tracking-wider" style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-primary)' }}>Verdict Summary</h4>
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold" style={{ color: 'var(--text-secondary)' }}>Strong Fits</span>

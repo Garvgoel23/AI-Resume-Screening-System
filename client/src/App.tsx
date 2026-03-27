@@ -133,9 +133,7 @@ const App: React.FC = () => {
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={18} />}
             </button>
-            <button className="get-started-pill nav-pill hidden sm:flex items-center gap-2" onClick={scrollToInput}>
-              Get Started <ArrowRight size={14} />
-            </button>
+            
           </div>
         </div>
       </nav>

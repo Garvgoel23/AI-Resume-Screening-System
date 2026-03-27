@@ -267,6 +267,29 @@
   50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.4); }
 }
 
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glowFlow {
+  0% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.15), -4px 0 25px rgba(139, 92, 246, 0.1); }
+  33% { box-shadow: 0 4px 25px rgba(139, 92, 246, 0.2), 4px 0 20px rgba(236, 72, 153, 0.1); }
+  66% { box-shadow: 4px 0 25px rgba(236, 72, 153, 0.15), 0 -4px 20px rgba(59, 130, 246, 0.1); }
+  100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.15), -4px 0 25px rgba(139, 92, 246, 0.1); }
+}
+
+/* ── Candidate Card Glow ────────────────────────────────── */
+.candidate-card-glow {
+  transition: all 0.4s ease;
+}
+
+.candidate-card-glow:hover {
+  border-color: var(--border-secondary);
+  animation: glowFlow 4s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.7s ease-out forwards;
 }
