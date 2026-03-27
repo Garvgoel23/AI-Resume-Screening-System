@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { FileText, FileCheck, FolderOpen, Download, Lightbulb } from 'lucide-react';
 
 interface JDInputProps {
   jdText: string;
@@ -41,7 +42,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
               border: '1px solid rgba(59, 130, 246, 0.2)',
             }}
           >
-            📝
+            <FileText size={20} />
           </div>
           <div className="min-w-0">
             <h2
@@ -124,7 +125,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                     border: '1px solid var(--badge-strong-border)',
                   }}
                 >
-                  📄
+                  <FileCheck size={28} />
                 </div>
                 <div>
                   <p className="font-bold text-sm truncate max-w-[200px] mx-auto" style={{ color: 'var(--badge-strong-text)' }}>
@@ -156,7 +157,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                     border: '1px solid var(--border-primary)',
                   }}
                 >
-                  {isDragActive ? '📂' : '📥'}
+                  {isDragActive ? <FolderOpen size={28} /> : <Download size={28} />}
                 </div>
                 <div>
                   <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
@@ -181,7 +182,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
             border: '1px solid var(--border-primary)',
           }}
         >
-          💡 Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
+          <Lightbulb size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
         </p>
       </div>
     </div>

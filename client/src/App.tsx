@@ -7,6 +7,7 @@ import ResultsDashboard from './components/ResultsDashboard';
 import { analyzeResumes } from './services/api';
 import type { CandidateAnalysis } from './types';
 import { useTheme } from './contexts/ThemeContext';
+import { Sparkles, Rocket, Target, Zap, Gem, AlertTriangle, Check, Circle, Sun, Moon } from 'lucide-react';
 
 // ── Typewriter Component ────────────────────────────────────
 const Typewriter: React.FC<{ text: string; delay?: number; startDelay?: number }> = ({ text, delay = 60, startDelay = 0 }) => {
@@ -46,26 +47,7 @@ const GitHubIcon = () => (
   </svg>
 );
 
-// ── Sun/Moon Icons ──────────────────────────────────────────
-const SunIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="5" />
-    <line x1="12" y1="1" x2="12" y2="3" />
-    <line x1="12" y1="21" x2="12" y2="23" />
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-    <line x1="1" y1="12" x2="3" y2="12" />
-    <line x1="21" y1="12" x2="23" y2="12" />
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-  </svg>
-);
-
-const MoonIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-  </svg>
-);
+// SunIcon / MoonIcon now come from lucide-react import above
 
 type AppState = 'input' | 'loading' | 'results' | 'error';
 
@@ -143,7 +125,7 @@ const App: React.FC = () => {
               title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
               id="theme-toggle"
             >
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={18} />}
             </button>
             <button className="rainbow-border-btn hidden sm:block" onClick={scrollToInput}>
               Get Started
@@ -170,7 +152,7 @@ const App: React.FC = () => {
                     border: '1px solid rgba(59, 130, 246, 0.2)',
                   }}
                 >
-                  ✨ AI-Powered Recruitment
+                  <Sparkles size={14} /> AI-Powered Recruitment
                 </div>
 
                 <h1
@@ -195,7 +177,7 @@ const App: React.FC = () => {
                   className="btn-primary px-8 py-4 text-base rounded-full flex items-center gap-2"
                   onClick={scrollToInput}
                 >
-                  <span>🚀</span> Start Analyzing
+                  <Rocket size={18} /> Start Analyzing
                 </button>
               </div>
             </div>
@@ -203,9 +185,9 @@ const App: React.FC = () => {
             {/* Feature Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
-                { icon: '🎯', title: 'Precision Scoring', desc: 'Weighted matching aligned to your JD requirements' },
-                { icon: '⚡', title: 'Instant Ranking', desc: 'Identify top candidates in seconds, not hours' },
-                { icon: '💎', title: 'Actionable Insights', desc: 'Clear breakdown of strengths & skill gaps' },
+                { icon: <Target size={22} />, title: 'Precision Scoring', desc: 'Weighted matching aligned to your JD requirements' },
+                { icon: <Zap size={22} />, title: 'Instant Ranking', desc: 'Identify top candidates in seconds, not hours' },
+                { icon: <Gem size={22} />, title: 'Actionable Insights', desc: 'Clear breakdown of strengths & skill gaps' },
               ].map((feature, i) => (
                 <div
                   key={i}
@@ -270,7 +252,7 @@ const App: React.FC = () => {
                         className="font-bold"
                         style={{ color: jdText || jdFile ? 'var(--accent-blue)' : 'var(--text-muted)' }}
                       >
-                        {jdText || jdFile ? '✓ Ready' : '○ Missing'}
+                        {jdText || jdFile ? <><Check size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Ready</> : <><Circle size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Missing</>}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
@@ -279,7 +261,7 @@ const App: React.FC = () => {
                         className="font-bold"
                         style={{ color: resumeFiles.length > 0 ? 'var(--accent-blue)' : 'var(--text-muted)' }}
                       >
-                        {resumeFiles.length > 0 ? `✓ ${resumeFiles.length} Queue` : '○ Missing'}
+                        {resumeFiles.length > 0 ? <><Check size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> {resumeFiles.length} Queue</> : <><Circle size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Missing</>}
                       </span>
                     </div>
                   </div>
@@ -389,7 +371,7 @@ const AnalyzeButton: React.FC<{ isReady: boolean; count: number; onClick: () => 
     disabled={!isReady}
     className="btn-primary w-full flex items-center justify-center gap-2 text-base py-3.5"
   >
-    <span>⚡</span>
+    <Zap size={18} />
     {isReady
       ? `Analyze ${count} Resume${count !== 1 ? 's' : ''}`
       : 'Complete Setup'}
@@ -404,7 +386,7 @@ const ErrorBanner: React.FC<{ msg: string }> = ({ msg }) => (
       border: '1px solid var(--badge-weak-border)',
     }}
   >
-    <span className="text-xl shrink-0" style={{ color: 'var(--badge-weak-text)' }}>⚠️</span>
+    <AlertTriangle size={20} className="shrink-0" style={{ color: 'var(--badge-weak-text)' }} />
     <div className="min-w-0 flex-1">
       <p className="font-bold text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--badge-weak-text)' }}>Analysis Failed</p>
       <p className="text-sm break-words" style={{ color: 'var(--badge-weak-text)' }}>{msg}</p>

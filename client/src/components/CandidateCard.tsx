@@ -1,5 +1,6 @@
 import React from 'react';
 import type { CandidateAnalysis } from '../types';
+import { Trophy, Medal, Award, Star, AlertTriangle } from 'lucide-react';
 
 interface CandidateCardProps {
   candidate: CandidateAnalysis;
@@ -37,9 +38,9 @@ const getFitBadge = (fit: string) => {
 };
 
 const getRankMedal = (rank: number) => {
-  if (rank === 1) return { icon: '🥇', label: '1st Place', color: 'linear-gradient(135deg, #f59e0b, #d97706)' };
-  if (rank === 2) return { icon: '🥈', label: '2nd Place', color: 'linear-gradient(135deg, #94a3b8, #64748b)' };
-  if (rank === 3) return { icon: '🥉', label: '3rd Place', color: 'linear-gradient(135deg, #ea580c, #c2410c)' };
+  if (rank === 1) return { icon: <Trophy size={18} />, label: '1st Place', color: 'linear-gradient(135deg, #f59e0b, #d97706)' };
+  if (rank === 2) return { icon: <Medal size={18} />, label: '2nd Place', color: 'linear-gradient(135deg, #94a3b8, #64748b)' };
+  if (rank === 3) return { icon: <Award size={18} />, label: '3rd Place', color: 'linear-gradient(135deg, #ea580c, #c2410c)' };
   return { icon: null, label: null, color: 'var(--bg-elevated)' };
 };
 
@@ -157,7 +158,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                   <div
                     className="w-6 h-6 rounded-lg flex items-center justify-center text-xs"
                     style={{ background: 'var(--badge-strong-bg)', border: '1px solid var(--badge-strong-border)' }}
-                  >⭐</div>
+                  ><Star size={14} /></div>
                   Key Strengths
                 </h4>
                 <ul className="space-y-3">
@@ -186,7 +187,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                   <div
                     className="w-6 h-6 rounded-lg flex items-center justify-center text-xs"
                     style={{ background: 'var(--badge-weak-bg)', border: '1px solid var(--badge-weak-border)' }}
-                  >⚠️</div>
+                  ><AlertTriangle size={14} /></div>
                   Potential Gaps
                 </h4>
                 <ul className="space-y-3">

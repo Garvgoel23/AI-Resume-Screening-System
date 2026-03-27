@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import CandidateCard from './CandidateCard';
 import type { CandidateAnalysis } from '../types';
+import { Target, RotateCcw, Star, TrendingUp, Users } from 'lucide-react';
 
 // ── Radial Score Chart ──────────────────────────────────────
 const CHART_COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#f97316'];
@@ -131,7 +132,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
               border: '1px solid var(--border-primary)',
             }}
           >
-            🎯 Rank Analysis Complete
+            <Target size={12} /> Rank Analysis Complete
           </div>
           <h2
             className="text-4xl md:text-5xl font-black tracking-tight leading-tight"
@@ -147,7 +148,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           onClick={onReset}
           className="btn-secondary px-6 py-3 flex items-center justify-center gap-2 font-bold text-sm"
         >
-          <span>↺</span> New Analysis
+          <RotateCcw size={16} /> New Analysis
         </button>
       </div>
 
@@ -163,7 +164,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
         >
           <div className="absolute top-0 right-0 w-32 h-32 rounded-bl-full -mr-8 -mt-8 -z-10" style={{ background: 'rgba(255,255,255,0.1)' }} />
           <div className="flex items-start gap-5">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center text-xl shadow-inner" style={{ background: 'rgba(255,255,255,0.15)', color: '#ffffff' }}>⭐</div>
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center text-xl shadow-inner" style={{ background: 'rgba(255,255,255,0.15)', color: '#ffffff' }}><Star size={22} /></div>
             <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.7)' }}>Highest Potential</p>
               <p className="text-lg font-bold truncate" style={{ fontFamily: "'Outfit', sans-serif", color: '#ffffff' }}>{bestCandidate?.candidateName}</p>
@@ -178,7 +179,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--text-primary)' }}
-            >📈</div>
+            ><TrendingUp size={22} /></div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>Batch Quality</p>
               <p className="text-3xl font-black" style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{avgScore}%</p>
@@ -193,7 +194,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--text-primary)' }}
-            >👥</div>
+            ><Users size={22} /></div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>Elite Matches</p>
               <p className="text-3xl font-black" style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{fitCounts['Strong Fit'] || 0}</p>

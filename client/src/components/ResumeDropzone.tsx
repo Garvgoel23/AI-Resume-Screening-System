@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Users, FolderOpen, Paperclip, X, Lock } from 'lucide-react';
 
 interface ResumeDropzoneProps {
   files: File[];
@@ -47,7 +48,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
               border: '1px solid rgba(139, 92, 246, 0.2)',
             }}
           >
-            👥
+            <Users size={20} />
           </div>
           <div className="min-w-0">
             <h2
@@ -95,7 +96,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
                 border: '1px solid var(--border-primary)',
               }}
             >
-              {isDragActive ? '📂' : '📎'}
+              {isDragActive ? <FolderOpen size={28} /> : <Paperclip size={28} />}
             </div>
             <div>
               <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
@@ -169,7 +170,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
                     }}
                     title="Remove"
                   >
-                    ✕
+                    <X size={16} />
                   </button>
                 </div>
               ))}
@@ -187,7 +188,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
             border: '1px solid var(--border-primary)',
           }}
         >
-          🔒 Your files are processed securely and deleted immediately after the analysis session ends.
+          <Lock size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Your files are processed securely and deleted immediately after the analysis session ends.
         </p>
       </div>
     </div>
