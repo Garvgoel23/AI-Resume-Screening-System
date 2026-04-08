@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Users, FolderOpen, Paperclip, X, Lock } from 'lucide-react';
+import { HiUsers, HiFolderOpen, HiPaperClip, HiXMark, HiLockClosed } from 'react-icons/hi2';
 
 interface ResumeDropzoneProps {
   files: File[];
@@ -49,7 +49,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
               color: 'var(--accent-secondary)',
             }}
           >
-            <Users size={20} />
+            <HiUsers size={20} />
           </div>
           <div className="min-w-0">
             <h2
@@ -99,7 +99,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
                 color: 'var(--accent-secondary)',
               }}
             >
-              {isDragActive ? <FolderOpen size={28} /> : <Paperclip size={28} />}
+              {isDragActive ? <HiFolderOpen size={28} /> : <HiPaperClip size={28} />}
             </div>
             <div>
               <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
@@ -174,7 +174,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
                     }}
                     title="Remove"
                   >
-                    <X size={16} />
+                    <HiXMark size={16} />
                   </button>
                 </div>
               ))}
@@ -193,7 +193,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
             fontFamily: "'Inter', sans-serif",
           }}
         >
-          <Lock size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-secondary)' }} /> Your files are processed securely and deleted immediately after the analysis session ends.
+          <HiLockClosed size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-secondary)' }} /> Your files are processed securely and deleted immediately after the analysis session ends.
         </p>
       </div>
     </div>

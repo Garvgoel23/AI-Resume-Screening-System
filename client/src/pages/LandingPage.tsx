@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, Target, Zap, Gem, ArrowRight } from 'lucide-react';
+import { HiSparkles, HiArrowRight } from 'react-icons/hi2';
+import { TbTargetArrow, TbBolt, TbDiamond } from 'react-icons/tb';
 
 // ── Typewriter Component ────────────────────────────────────
 const Typewriter: React.FC<{ text: string; delay?: number; startDelay?: number }> = ({ text, delay = 60, startDelay = 0 }) => {
@@ -36,6 +37,11 @@ const Typewriter: React.FC<{ text: string; delay?: number; startDelay?: number }
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
 
+  const handleGetStarted = () => {
+    navigate('/analyze');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   return (
     <>
       <main className="max-w-7xl mx-auto px-6 py-16 lg:py-24">
@@ -53,7 +59,7 @@ const LandingPage: React.FC = () => {
                   fontFamily: "'Inter', sans-serif",
                 }}
               >
-                <Sparkles size={14} /> AI-Powered Recruitment
+                <HiSparkles size={14} /> AI-Powered Recruitment
               </div>
 
               <h1
@@ -76,11 +82,11 @@ const LandingPage: React.FC = () => {
 
               <button
                 className="get-started-pill flex items-center gap-2.5"
-                onClick={() => navigate('/analyze')}
+                onClick={handleGetStarted}
               >
                 <span className="pill-dot" />
                 Get Started
-                <ArrowRight size={16} />
+                <HiArrowRight size={16} />
               </button>
             </div>
           </div>
@@ -88,9 +94,9 @@ const LandingPage: React.FC = () => {
           {/* Feature Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { icon: <Target size={22} />, title: 'Precision Scoring', desc: 'Weighted matching aligned to your JD requirements' },
-              { icon: <Zap size={22} />, title: 'Instant Ranking', desc: 'Identify top candidates in seconds, not hours' },
-              { icon: <Gem size={22} />, title: 'Actionable Insights', desc: 'Clear breakdown of strengths & skill gaps' },
+              { icon: <TbTargetArrow size={22} />, title: 'Precision Scoring', desc: 'Weighted matching aligned to your JD requirements' },
+              { icon: <TbBolt size={22} />, title: 'Instant Ranking', desc: 'Identify top candidates in seconds, not hours' },
+              { icon: <TbDiamond size={22} />, title: 'Actionable Insights', desc: 'Clear breakdown of strengths & skill gaps' },
             ].map((feature, i) => (
               <div
                 key={i}
@@ -168,11 +174,11 @@ const LandingPage: React.FC = () => {
 
             <button
               className="get-started-pill flex items-center gap-2.5 mx-auto"
-              onClick={() => navigate('/analyze')}
+              onClick={handleGetStarted}
             >
               <span className="pill-dot" />
               Start Screening Now
-              <ArrowRight size={16} />
+              <HiArrowRight size={16} />
             </button>
           </div>
         </div>

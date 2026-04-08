@@ -1,6 +1,7 @@
 import React from 'react';
 import type { CandidateAnalysis } from '../types';
-import { Trophy, Medal, Award, Star, AlertTriangle } from 'lucide-react';
+import { HiTrophy, HiStar, HiExclamationTriangle, HiAcademicCap } from 'react-icons/hi2';
+import { FaMedal } from 'react-icons/fa6';
 
 interface CandidateCardProps {
   candidate: CandidateAnalysis;
@@ -38,9 +39,9 @@ const getFitBadge = (fit: string) => {
 };
 
 const getRankMedal = (rank: number) => {
-  if (rank === 1) return { icon: <Trophy size={18} />, label: '1st Place', color: 'linear-gradient(135deg, #C4956A, #A0522D)' };
-  if (rank === 2) return { icon: <Medal size={18} />, label: '2nd Place', color: 'linear-gradient(135deg, #A89585, #7A6555)' };
-  if (rank === 3) return { icon: <Award size={18} />, label: '3rd Place', color: 'linear-gradient(135deg, #8B6E5A, #6B5444)' };
+  if (rank === 1) return { icon: <HiTrophy size={18} />, label: '1st Place', color: 'linear-gradient(135deg, #C4956A, #A0522D)' };
+  if (rank === 2) return { icon: <FaMedal size={18} />, label: '2nd Place', color: 'linear-gradient(135deg, #A89585, #7A6555)' };
+  if (rank === 3) return { icon: <HiAcademicCap size={18} />, label: '3rd Place', color: 'linear-gradient(135deg, #8B6E5A, #6B5444)' };
   return { icon: null, label: null, color: 'var(--bg-elevated)' };
 };
 
@@ -154,7 +155,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                   <div
                     className="w-6 h-6 rounded-lg flex items-center justify-center text-xs"
                     style={{ background: 'var(--badge-strong-bg)', border: '1px solid var(--badge-strong-border)' }}
-                  ><Star size={14} /></div>
+                  ><HiStar size={14} /></div>
                   Key Strengths
                 </h4>
                 <ul className="space-y-3">
@@ -183,7 +184,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                   <div
                     className="w-6 h-6 rounded-lg flex items-center justify-center text-xs"
                     style={{ background: 'var(--badge-weak-bg)', border: '1px solid var(--badge-weak-border)' }}
-                  ><AlertTriangle size={14} /></div>
+                  ><HiExclamationTriangle size={14} /></div>
                   Potential Gaps
                 </h4>
                 <ul className="space-y-3">

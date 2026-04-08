@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FileText, FileCheck, FolderOpen, Download, Lightbulb } from 'lucide-react';
+import { HiDocumentText, HiDocumentCheck, HiFolderOpen, HiArrowDownTray, HiLightBulb } from 'react-icons/hi2';
 
 interface JDInputProps {
   jdText: string;
@@ -43,7 +43,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
               color: 'var(--accent-primary)',
             }}
           >
-            <FileText size={20} />
+            <HiDocumentText size={20} />
           </div>
           <div className="min-w-0">
             <h2
@@ -128,7 +128,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                     color: 'var(--badge-strong-text)',
                   }}
                 >
-                  <FileCheck size={28} />
+                  <HiDocumentCheck size={28} />
                 </div>
                 <div>
                   <p className="font-bold text-sm truncate max-w-[200px] mx-auto" style={{ color: 'var(--badge-strong-text)' }}>
@@ -162,7 +162,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                     color: 'var(--accent-primary)',
                   }}
                 >
-                  {isDragActive ? <FolderOpen size={28} /> : <Download size={28} />}
+                  {isDragActive ? <HiFolderOpen size={28} /> : <HiArrowDownTray size={28} />}
                 </div>
                 <div>
                   <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
@@ -188,7 +188,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
             fontFamily: "'Inter', sans-serif",
           }}
         >
-          <Lightbulb size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-warm)' }} /> Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
+          <HiLightBulb size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-warm)' }} /> Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
         </p>
       </div>
     </div>

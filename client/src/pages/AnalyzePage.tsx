@@ -4,7 +4,9 @@ import JDInput from '../components/JDInput';
 import ResumeDropzone from '../components/ResumeDropzone';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { analyzeResumes } from '../services/api';
-import { Zap, AlertTriangle, Check, Circle, FileText, Upload } from 'lucide-react';
+import { TbBolt } from 'react-icons/tb';
+import { HiExclamationTriangle, HiCheck, HiDocumentText, HiArrowUpTray } from 'react-icons/hi2';
+import { FaRegCircle } from 'react-icons/fa';
 
 type PageState = 'input' | 'loading' | 'error';
 
@@ -65,7 +67,7 @@ const AnalyzePage: React.FC = () => {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              <FileText size={14} /> Setup Analysis
+              <HiDocumentText size={14} /> Setup Analysis
             </div>
             <h1
               className="text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4"
@@ -123,19 +125,19 @@ const AnalyzePage: React.FC = () => {
                   <div className="flex items-center justify-between text-sm">
                     <span style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }} className="font-medium">Job Description</span>
                     <span
-                      className="font-bold"
+                      className="font-bold flex items-center gap-1"
                       style={{ color: jdText || jdFile ? 'var(--accent-primary)' : 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}
                     >
-                      {jdText || jdFile ? <><Check size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Ready</> : <><Circle size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Missing</>}
+                      {jdText || jdFile ? <><HiCheck size={12} /> Ready</> : <><FaRegCircle size={10} /> Missing</>}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }} className="font-medium">Total Resumes</span>
                     <span
-                      className="font-bold"
+                      className="font-bold flex items-center gap-1"
                       style={{ color: resumeFiles.length > 0 ? 'var(--accent-primary)' : 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}
                     >
-                      {resumeFiles.length > 0 ? <><Check size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> {resumeFiles.length} Queue</> : <><Circle size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Missing</>}
+                      {resumeFiles.length > 0 ? <><HiCheck size={12} /> {resumeFiles.length} Queue</> : <><FaRegCircle size={10} /> Missing</>}
                     </span>
                   </div>
                 </div>
@@ -179,9 +181,9 @@ const AnalyzePage: React.FC = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { icon: <FileText size={18} />, tip: 'Be specific in your JD — mention exact skills, frameworks, and experience levels for the best AI matching.' },
-                { icon: <Upload size={18} />, tip: 'Upload multiple resumes at once. Our AI handles batch processing and ranks all candidates together.' },
-                { icon: <Zap size={18} />, tip: 'Results include actionable insights — strengths, gaps, and a clear recommendation for each candidate.' },
+                { icon: <HiDocumentText size={18} />, tip: 'Be specific in your JD — mention exact skills, frameworks, and experience levels for the best AI matching.' },
+                { icon: <HiArrowUpTray size={18} />, tip: 'Upload multiple resumes at once. Our AI handles batch processing and ranks all candidates together.' },
+                { icon: <TbBolt size={18} />, tip: 'Results include actionable insights — strengths, gaps, and a clear recommendation for each candidate.' },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">
                   <div
@@ -216,7 +218,7 @@ const AnalyzeButton: React.FC<{ isReady: boolean; count: number; onClick: () => 
     disabled={!isReady}
     className="btn-primary w-full flex items-center justify-center gap-2 text-base py-3.5"
   >
-    <Zap size={18} />
+    <TbBolt size={18} />
     {isReady
       ? `Analyze ${count} Resume${count !== 1 ? 's' : ''}`
       : 'Complete Setup'}
@@ -231,7 +233,7 @@ const ErrorBanner: React.FC<{ msg: string }> = ({ msg }) => (
       border: '1px solid var(--badge-weak-border)',
     }}
   >
-    <AlertTriangle size={20} className="shrink-0" style={{ color: 'var(--badge-weak-text)' }} />
+    <HiExclamationTriangle size={20} className="shrink-0" style={{ color: 'var(--badge-weak-text)' }} />
     <div className="min-w-0 flex-1">
       <p className="font-bold text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--badge-weak-text)', fontFamily: "'Inter', sans-serif" }}>Analysis Failed</p>
       <p className="text-sm break-words" style={{ color: 'var(--badge-weak-text)', fontFamily: "'Lora', serif" }}>{msg}</p>

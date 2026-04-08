@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import CandidateCard from './CandidateCard';
 import type { CandidateAnalysis } from '../types';
-import { Target, RotateCcw, Star, TrendingUp, Users } from 'lucide-react';
+import { TbTargetArrow } from 'react-icons/tb';
+import { HiArrowPath, HiStar, HiArrowTrendingUp, HiUsers } from 'react-icons/hi2';
 
 // ── Radial Score Chart ──────────────────────────────────────
 const CHART_COLORS = ['#A0522D', '#8B6E5A', '#C4956A', '#B8860B', '#4A7C59', '#7B8D6E', '#D4A574'];
@@ -133,7 +134,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
               fontFamily: "'Inter', sans-serif",
             }}
           >
-            <Target size={12} /> Rank Analysis Complete
+            <TbTargetArrow size={12} /> Rank Analysis Complete
           </div>
           <h2
             className="text-4xl md:text-5xl font-bold tracking-tight leading-tight"
@@ -149,7 +150,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           onClick={onReset}
           className="btn-secondary px-6 py-3 flex items-center justify-center gap-2 font-bold text-sm"
         >
-          <RotateCcw size={16} /> New Analysis
+          <HiArrowPath size={16} /> New Analysis
         </button>
       </div>
 
@@ -161,7 +162,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--accent-primary)' }}
-            ><Star size={22} /></div>
+            ><HiStar size={22} /></div>
             <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Highest Potential</p>
               <p className="text-lg font-bold truncate" style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}>{bestCandidate?.candidateName}</p>
@@ -176,7 +177,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--accent-secondary)' }}
-            ><TrendingUp size={22} /></div>
+            ><HiArrowTrendingUp size={22} /></div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Batch Quality</p>
               <p className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}>{avgScore}%</p>
@@ -191,7 +192,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--accent-warm)' }}
-            ><Users size={22} /></div>
+            ><HiUsers size={22} /></div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Elite Matches</p>
               <p className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}>{fitCounts['Strong Fit'] || 0}</p>
