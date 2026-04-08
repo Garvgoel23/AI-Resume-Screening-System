@@ -4,7 +4,7 @@ import type { CandidateAnalysis } from '../types';
 import { Target, RotateCcw, Star, TrendingUp, Users } from 'lucide-react';
 
 // ── Radial Score Chart ──────────────────────────────────────
-const CHART_COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#f97316'];
+const CHART_COLORS = ['#A0522D', '#8B6E5A', '#C4956A', '#B8860B', '#4A7C59', '#7B8D6E', '#D4A574'];
 
 const RadialScoreChart: React.FC<{ data: { name: string; score: number }[] }> = ({ data }) => {
   const size = 220;
@@ -53,10 +53,10 @@ const RadialScoreChart: React.FC<{ data: { name: string; score: number }[] }> = 
           );
         })}
         {/* Center text */}
-        <text x={cx} y={cy - 8} textAnchor="middle" fill="var(--text-primary)" fontSize="22" fontWeight="900" fontFamily="'Outfit', sans-serif">
+        <text x={cx} y={cy - 8} textAnchor="middle" fill="var(--text-primary)" fontSize="22" fontWeight="700" fontFamily="'Cormorant Garamond', serif" fontStyle="italic">
           {data.length}
         </text>
-        <text x={cx} y={cy + 12} textAnchor="middle" fill="var(--text-muted)" fontSize="9" fontWeight="700" letterSpacing="0.1em">
+        <text x={cx} y={cy + 12} textAnchor="middle" fill="var(--text-muted)" fontSize="9" fontWeight="700" letterSpacing="0.1em" fontFamily="'Inter', sans-serif">
           CANDIDATES
         </text>
       </svg>
@@ -71,7 +71,7 @@ const RadialScoreChart: React.FC<{ data: { name: string; score: number }[] }> = 
                 <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: color }} />
                 <span className="font-medium truncate" style={{ color: 'var(--text-secondary)' }}>{item.name}</span>
               </div>
-              <span className="font-black tabular-nums" style={{ color: 'var(--text-primary)' }}>{item.score}%</span>
+              <span className="font-black tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: "'Inter', sans-serif" }}>{item.score}%</span>
             </div>
           );
         })}
@@ -130,17 +130,18 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
               background: 'var(--bg-elevated)',
               color: 'var(--text-primary)',
               border: '1px solid var(--border-primary)',
+              fontFamily: "'Inter', sans-serif",
             }}
           >
             <Target size={12} /> Rank Analysis Complete
           </div>
           <h2
-            className="text-4xl md:text-5xl font-black tracking-tight leading-tight"
-            style={{ fontFamily: "'Playfair Display', serif", color: 'var(--text-primary)' }}
+            className="text-4xl md:text-5xl font-bold tracking-tight leading-tight"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
           >
             Meet your <span className="gradient-text">Top Talent.</span>
           </h2>
-          <p className="mt-4 text-base font-medium leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <p className="mt-4 text-base font-medium leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: "'Lora', serif" }}>
             AI has processed {candidates.length} candidates. We've identified the best matches based on technical proficiency, experience density, and requirement alignment.
           </p>
         </div>
@@ -159,12 +160,12 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           <div className="flex items-start gap-5">
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
-              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--text-primary)' }}
+              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--accent-primary)' }}
             ><Star size={22} /></div>
             <div className="min-w-0">
-              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>Highest Potential</p>
-              <p className="text-lg font-bold truncate" style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{bestCandidate?.candidateName}</p>
-              <p className="text-xs font-bold mt-1" style={{ color: 'var(--text-secondary)' }}>{bestCandidate?.matchScore}% Match Score</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Highest Potential</p>
+              <p className="text-lg font-bold truncate" style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}>{bestCandidate?.candidateName}</p>
+              <p className="text-xs font-bold mt-1" style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }}>{bestCandidate?.matchScore}% Match Score</p>
             </div>
           </div>
         </div>
@@ -174,12 +175,12 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           <div className="flex items-start gap-5">
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
-              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--text-primary)' }}
+              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--accent-secondary)' }}
             ><TrendingUp size={22} /></div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>Batch Quality</p>
-              <p className="text-3xl font-black" style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{avgScore}%</p>
-              <p className="text-[10px] font-medium mt-1" style={{ color: 'var(--text-secondary)' }}>Average compatibility</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Batch Quality</p>
+              <p className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}>{avgScore}%</p>
+              <p className="text-[10px] font-medium mt-1" style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }}>Average compatibility</p>
             </div>
           </div>
         </div>
@@ -189,12 +190,12 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           <div className="flex items-start gap-5">
             <div
               className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
-              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--text-primary)' }}
+              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-primary)', color: 'var(--accent-warm)' }}
             ><Users size={22} /></div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>Elite Matches</p>
-              <p className="text-3xl font-black" style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{fitCounts['Strong Fit'] || 0}</p>
-              <p className="text-[10px] font-bold italic mt-1" style={{ color: 'var(--badge-strong-text)' }}>Recommended for hire</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Elite Matches</p>
+              <p className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}>{fitCounts['Strong Fit'] || 0}</p>
+              <p className="text-[10px] font-bold italic mt-1" style={{ color: 'var(--badge-strong-text)', fontFamily: "'Lora', serif" }}>Recommended for hire</p>
             </div>
           </div>
         </div>
@@ -205,13 +206,13 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
         <div className="lg:col-span-8 space-y-8">
           <div className="flex items-center justify-between">
             <h3
-              className="text-xl font-black tracking-tight"
-              style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+              className="text-xl font-bold tracking-tight"
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
             >
               Candidate Performance Ranking
             </h3>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Total: {candidates.length} Scored</span>
+              <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>Total: {candidates.length} Scored</span>
             </div>
           </div>
 
@@ -228,7 +229,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
           <div className="saas-card p-6">
             <h4
               className="text-sm font-bold mb-6 pb-3 uppercase tracking-wider"
-              style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-primary)' }}
+              style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-primary)', fontFamily: "'Inter', sans-serif" }}
             >
               Score Distribution
             </h4>
@@ -237,38 +238,38 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({ candidates, onReset
 
           {/* Verdict Summary */}
           <div className="saas-card p-6">
-            <h4 className="text-sm font-bold mb-6 pb-3 uppercase tracking-wider" style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-primary)' }}>Verdict Summary</h4>
+            <h4 className="text-sm font-bold mb-6 pb-3 uppercase tracking-wider" style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-primary)', fontFamily: "'Inter', sans-serif" }}>Verdict Summary</h4>
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold" style={{ color: 'var(--text-secondary)' }}>Strong Fits</span>
+                <span className="font-bold" style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }}>Strong Fits</span>
                 <span
                   className="px-2 py-1 rounded font-black"
-                  style={{ background: 'var(--accent-blue)', color: '#ffffff' }}
+                  style={{ background: 'var(--accent-primary)', color: '#ffffff', fontFamily: "'Inter', sans-serif" }}
                 >
                   {fitCounts['Strong Fit'] || 0}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold" style={{ color: 'var(--text-secondary)' }}>Moderate Fits</span>
+                <span className="font-bold" style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }}>Moderate Fits</span>
                 <span
                   className="px-2 py-1 rounded font-black"
-                  style={{ background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid var(--border-primary)' }}
+                  style={{ background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid var(--border-primary)', fontFamily: "'Inter', sans-serif" }}
                 >
                   {fitCounts['Moderate Fit'] || 0}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold" style={{ color: 'var(--text-secondary)' }}>Not Fit</span>
+                <span className="font-bold" style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }}>Not Fit</span>
                 <span
                   className="px-2 py-1 rounded font-black"
-                  style={{ background: 'var(--badge-weak-bg)', color: 'var(--badge-weak-text)', border: '1px solid var(--badge-weak-border)' }}
+                  style={{ background: 'var(--badge-weak-bg)', color: 'var(--badge-weak-text)', border: '1px solid var(--badge-weak-border)', fontFamily: "'Inter', sans-serif" }}
                 >
                   {fitCounts['Not Fit'] || 0}
                 </span>
               </div>
             </div>
             <div className="mt-8 pt-6" style={{ borderTop: '1px solid var(--border-primary)' }}>
-              <p className="text-[10px] italic leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-[10px] italic leading-relaxed" style={{ color: 'var(--text-muted)', fontFamily: "'Lora', serif" }}>
                 "AI recommendation engine identifies {bestCandidate?.candidateName} as the primary choice for this role with exceptional alignment."
               </p>
             </div>

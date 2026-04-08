@@ -44,8 +44,9 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
             style={{
-              background: 'rgba(139, 92, 246, 0.1)',
-              border: '1px solid rgba(139, 92, 246, 0.2)',
+              background: 'rgba(139, 110, 90, 0.1)',
+              border: '1px solid rgba(139, 110, 90, 0.18)',
+              color: 'var(--accent-secondary)',
             }}
           >
             <Users size={20} />
@@ -53,11 +54,11 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
           <div className="min-w-0">
             <h2
               className="font-bold text-lg tracking-tight truncate"
-              style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
             >
               Candidate Resumes
             </h2>
-            <p className="text-xs font-medium truncate" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-xs font-medium truncate" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
               Bulk upload PDFs
             </p>
           </div>
@@ -69,6 +70,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
               background: 'var(--bg-elevated)',
               border: '1px solid var(--border-primary)',
               color: 'var(--text-secondary)',
+              fontFamily: "'Inter', sans-serif",
             }}
           >
             {files.length} {files.length === 1 ? 'Resume' : 'Resumes'}
@@ -83,8 +85,8 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
           id="resume-dropzone"
           className="relative border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-200 group"
           style={{
-            borderColor: isDragActive ? 'var(--accent-blue)' : 'var(--border-secondary)',
-            background: isDragActive ? 'rgba(59, 130, 246, 0.05)' : 'transparent',
+            borderColor: isDragActive ? 'var(--accent-primary)' : 'var(--border-secondary)',
+            background: isDragActive ? 'rgba(160, 82, 45, 0.04)' : 'transparent',
           }}
         >
           <input {...getInputProps()} id="resume-file-input" />
@@ -94,6 +96,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
               style={{
                 background: 'var(--bg-card)',
                 border: '1px solid var(--border-primary)',
+                color: 'var(--accent-secondary)',
               }}
             >
               {isDragActive ? <FolderOpen size={28} /> : <Paperclip size={28} />}
@@ -102,7 +105,7 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
               <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
                 {isDragActive ? 'Release to upload' : 'Click or drag resumes'}
               </p>
-              <p className="text-[10px] font-bold uppercase tracking-widest mt-2 px-4" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mt-2 px-4" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
                 PDF format • Up to 10 MB per file
               </p>
             </div>
@@ -113,13 +116,13 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
         {files.length > 0 && (
           <div className="space-y-3 animate-fade-in">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
                 Queued for Analysis
               </span>
               <button
                 onClick={() => onFilesChange([])}
                 className="text-[10px] font-bold uppercase tracking-widest transition-colors"
-                style={{ color: 'var(--text-muted)' }}
+                style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--badge-weak-text)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
               >
@@ -144,13 +147,14 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
                         background: 'var(--bg-elevated)',
                         border: '1px solid var(--border-primary)',
                         color: 'var(--text-muted)',
+                        fontFamily: "'Inter', sans-serif",
                       }}
                     >
                       {i + 1}
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-bold truncate" style={{ color: 'var(--text-primary)' }}>{file.name}</p>
-                      <p className="text-[10px] font-medium mt-0.5" style={{ color: 'var(--text-muted)' }}>{formatSize(file.size)}</p>
+                      <p className="text-[10px] font-medium mt-0.5" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>{formatSize(file.size)}</p>
                     </div>
                   </div>
                   <button
@@ -186,9 +190,10 @@ const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ files, onFilesChange })
             color: 'var(--text-muted)',
             background: 'var(--bg-elevated)',
             border: '1px solid var(--border-primary)',
+            fontFamily: "'Inter', sans-serif",
           }}
         >
-          <Lock size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Your files are processed securely and deleted immediately after the analysis session ends.
+          <Lock size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-secondary)' }} /> Your files are processed securely and deleted immediately after the analysis session ends.
         </p>
       </div>
     </div>

@@ -15,7 +15,7 @@ const getFitBadge = (fit: string) => {
         text: 'var(--badge-strong-text)',
         border: 'var(--badge-strong-border)',
         icon: '✓',
-        color: '#10b981',
+        color: '#4A7C59',
       };
     case 'Moderate Fit':
       return {
@@ -23,7 +23,7 @@ const getFitBadge = (fit: string) => {
         text: 'var(--badge-moderate-text)',
         border: 'var(--badge-moderate-border)',
         icon: '≈',
-        color: '#f59e0b',
+        color: '#B8860B',
       };
     case 'Not Fit':
     default:
@@ -32,15 +32,15 @@ const getFitBadge = (fit: string) => {
         text: 'var(--badge-weak-text)',
         border: 'var(--badge-weak-border)',
         icon: '✕',
-        color: '#ef4444',
+        color: '#C0564B',
       };
   }
 };
 
 const getRankMedal = (rank: number) => {
-  if (rank === 1) return { icon: <Trophy size={18} />, label: '1st Place', color: 'linear-gradient(135deg, #f59e0b, #d97706)' };
-  if (rank === 2) return { icon: <Medal size={18} />, label: '2nd Place', color: 'linear-gradient(135deg, #94a3b8, #64748b)' };
-  if (rank === 3) return { icon: <Award size={18} />, label: '3rd Place', color: 'linear-gradient(135deg, #ea580c, #c2410c)' };
+  if (rank === 1) return { icon: <Trophy size={18} />, label: '1st Place', color: 'linear-gradient(135deg, #C4956A, #A0522D)' };
+  if (rank === 2) return { icon: <Medal size={18} />, label: '2nd Place', color: 'linear-gradient(135deg, #A89585, #7A6555)' };
+  if (rank === 3) return { icon: <Award size={18} />, label: '3rd Place', color: 'linear-gradient(135deg, #8B6E5A, #6B5444)' };
   return { icon: null, label: null, color: 'var(--bg-elevated)' };
 };
 
@@ -74,7 +74,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                 cx="48"
                 cy="48"
                 r={radius}
-                stroke="var(--accent-blue)"
+                stroke="var(--accent-primary)"
                 strokeWidth="4"
                 fill="transparent"
                 strokeDasharray={circumference}
@@ -84,12 +84,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span
-                className="text-xl font-black leading-none"
-                style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+                className="text-xl font-bold leading-none"
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
               >
                 {candidate.matchScore}%
               </span>
-              <span className="text-[8px] font-bold uppercase tracking-tighter mt-1 leading-none" style={{ color: 'var(--text-muted)' }}>
+              <span className="text-[8px] font-bold uppercase tracking-tighter mt-1 leading-none" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
                 Match
               </span>
             </div>
@@ -110,8 +110,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
               <div>
                 <h3
-                  className="text-2xl font-black tracking-tight leading-tight transition-colors"
-                  style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+                  className="text-2xl font-bold tracking-tight leading-tight transition-colors"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
                 >
                   {candidate.candidateName}
                 </h3>
@@ -122,13 +122,14 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                       background: badgeStyle.bg,
                       color: badgeStyle.text,
                       border: `1px solid ${badgeStyle.border}`,
+                      fontFamily: "'Inter', sans-serif",
                     }}
                   >
                     <span className="text-sm font-normal">{badgeStyle.icon}</span>
                     {candidate.recommendation}
                   </span>
                   {medal.label && (
-                    <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+                    <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
                       Ranked {medal.label}
                     </span>
                   )}
@@ -148,7 +149,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
               >
                 <h4
                   className="text-[10px] font-black uppercase tracking-[0.2em] mb-4 flex items-center gap-2"
-                  style={{ color: 'var(--badge-strong-text)' }}
+                  style={{ color: 'var(--badge-strong-text)', fontFamily: "'Inter', sans-serif" }}
                 >
                   <div
                     className="w-6 h-6 rounded-lg flex items-center justify-center text-xs"
@@ -158,12 +159,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                 </h4>
                 <ul className="space-y-3">
                   {candidate.keyStrengths.map((str, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm font-medium leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    <li key={idx} className="flex items-start gap-2.5 text-sm font-medium leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: "'Lora', serif" }}>
                       <span className="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--badge-strong-text)' }} />
                       {str}
                     </li>
                   ))}
-                  {candidate.keyStrengths.length === 0 && <li className="italic text-sm" style={{ color: 'var(--text-muted)' }}>No specific strengths noted.</li>}
+                  {candidate.keyStrengths.length === 0 && <li className="italic text-sm" style={{ color: 'var(--text-muted)', fontFamily: "'Lora', serif" }}>No specific strengths noted.</li>}
                 </ul>
               </div>
 
@@ -177,7 +178,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
               >
                 <h4
                   className="text-[10px] font-black uppercase tracking-[0.2em] mb-4 flex items-center gap-2"
-                  style={{ color: 'var(--badge-weak-text)' }}
+                  style={{ color: 'var(--badge-weak-text)', fontFamily: "'Inter', sans-serif" }}
                 >
                   <div
                     className="w-6 h-6 rounded-lg flex items-center justify-center text-xs"
@@ -187,12 +188,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, rank }) => {
                 </h4>
                 <ul className="space-y-3">
                   {candidate.keyGaps.map((gap, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm font-medium leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    <li key={idx} className="flex items-start gap-2.5 text-sm font-medium leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: "'Lora', serif" }}>
                       <span className="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--badge-weak-text)' }} />
                       {gap}
                     </li>
                   ))}
-                  {candidate.keyGaps.length === 0 && <li className="italic text-sm" style={{ color: 'var(--text-muted)' }}>No significant gaps found.</li>}
+                  {candidate.keyGaps.length === 0 && <li className="italic text-sm" style={{ color: 'var(--text-muted)', fontFamily: "'Lora', serif" }}>No significant gaps found.</li>}
                 </ul>
               </div>
             </div>

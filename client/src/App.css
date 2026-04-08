@@ -1,25 +1,22 @@
 /* ── Footer Styles ─────────────────────────────────────── */
 .footer-outline-text {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 900;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
   font-size: clamp(2.5rem, 8vw, 6rem);
   line-height: 1.1;
-  color: var(--text-muted);
+  color: var(--border-secondary);
   letter-spacing: 0.02em;
   user-select: none;
   transition: all 0.4s ease;
   cursor: default;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .footer-outline-text:hover {
-  color: var(--text-primary);
-  text-shadow: 0 0 30px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3);
+  color: var(--accent-primary);
+  text-shadow: 0 0 30px rgba(160, 82, 45, 0.2);
   opacity: 1;
-}
-
-[data-theme="light"] .footer-outline-text {
-  color: #cbd5e1;
 }
 
 .footer-avatar {
@@ -33,7 +30,7 @@
 
 .footer-avatar:hover {
   transform: scale(1.1);
-  border-color: var(--accent-blue);
+  border-color: var(--accent-primary);
 }
 
 .source-btn {
@@ -45,6 +42,7 @@
   border: 1px solid var(--border-secondary);
   background: transparent;
   color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -53,8 +51,8 @@
 }
 
 .source-btn:hover {
-  border-color: var(--text-primary);
-  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
   transform: translateY(-2px);
 }
 
@@ -63,50 +61,28 @@
   height: 18px;
 }
 
-/* ── Theme Toggle ─────────────────────────────────────── */
-.theme-toggle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border-primary);
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-}
-
-.theme-toggle:hover {
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
-  transform: rotate(30deg);
-}
-
-/* ── Get Started Pill Button ──────────────────────────── */
+/* ── Get Started Pill Button (Terracotta Fill) ───────────── */
 .get-started-pill {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 28px;
+  padding: 14px 32px;
   border-radius: 999px;
-  border: 1.5px solid var(--border-secondary);
-  background: transparent;
-  color: var(--text-primary);
-  font-family: 'Outfit', sans-serif;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-primary), #8B4513);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.35s ease;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 16px rgba(160, 82, 45, 0.25);
 }
 
 .get-started-pill:hover {
-  border-color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(160, 82, 45, 0.35);
 }
 
 .get-started-pill:hover svg {
@@ -121,7 +97,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--text-primary);
+  background: rgba(255, 255, 255, 0.6);
   flex-shrink: 0;
 }
 
@@ -141,7 +117,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.75rem;
   transition: all 0.3s ease;
 }
 
@@ -160,8 +136,9 @@
   justify-content: center;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  background: linear-gradient(135deg, rgba(160, 82, 45, 0.08), rgba(196, 149, 106, 0.08));
+  border: 1px solid rgba(160, 82, 45, 0.12);
+  color: var(--accent-primary);
 }
 
 /* ── Pulse Animation for Cursor ──────────────────────── */
@@ -177,6 +154,7 @@
 /* ── Nav Link ────────────────────────────────────────── */
 .nav-link {
   color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
   text-decoration: none;
@@ -186,7 +164,7 @@
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: var(--accent-primary);
 }
 
 .nav-link::after {
@@ -196,7 +174,7 @@
   left: 0;
   width: 0;
   height: 1.5px;
-  background: var(--accent-blue);
+  background: var(--accent-primary);
   transition: width 0.3s ease;
 }
 

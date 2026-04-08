@@ -6,8 +6,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 import ResultsDashboard from './components/ResultsDashboard';
 import { analyzeResumes } from './services/api';
 import type { CandidateAnalysis } from './types';
-import { useTheme } from './contexts/ThemeContext';
-import { Sparkles, Target, Zap, Gem, AlertTriangle, Check, Circle, Sun, Moon, ArrowRight } from 'lucide-react';
+import { Sparkles, Target, Zap, Gem, AlertTriangle, Check, Circle, ArrowRight } from 'lucide-react';
 
 // ── Typewriter Component ────────────────────────────────────
 const Typewriter: React.FC<{ text: string; delay?: number; startDelay?: number }> = ({ text, delay = 60, startDelay = 0 }) => {
@@ -34,7 +33,7 @@ const Typewriter: React.FC<{ text: string; delay?: number; startDelay?: number }
     <span>
       {currentText}
       {isStarted && currentIndex < text.length && (
-        <span className="cursor-blink inline-block w-[3px] h-[1em] ml-1 align-middle" style={{ background: 'var(--accent-blue)' }} />
+        <span className="cursor-blink inline-block w-[3px] h-[1em] ml-1 align-middle" style={{ background: 'var(--accent-primary)' }} />
       )}
     </span>
   );
@@ -47,12 +46,9 @@ const GitHubIcon = () => (
   </svg>
 );
 
-// SunIcon / MoonIcon now come from lucide-react import above
-
 type AppState = 'input' | 'loading' | 'results' | 'error';
 
 const App: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
   const inputSectionRef = useRef<HTMLDivElement>(null);
 
   // ── Input State ────────────────────────────────────────────
@@ -118,22 +114,26 @@ const App: React.FC = () => {
             <img src="/vite.svg" className="w-8 h-8" alt="Logo" />
             <span
               className="font-bold text-xl tracking-tight"
-              style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)' }}
             >
-              Skill<span className="gradient-text">Match</span>
+              Skill<span className="gradient-text" style={{ fontStyle: 'italic' }}>Match</span>
             </span>
           </button>
 
           <div className="flex items-center gap-4">
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              id="theme-toggle"
+            <span
+              className="text-xs font-semibold uppercase tracking-widest hidden sm:block"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                color: 'var(--accent-primary)',
+                background: 'rgba(160, 82, 45, 0.08)',
+                padding: '6px 14px',
+                borderRadius: '999px',
+                border: '1px solid rgba(160, 82, 45, 0.15)',
+              }}
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={18} />}
-            </button>
-            
+              AI Screening
+            </span>
           </div>
         </div>
       </nav>
@@ -145,23 +145,24 @@ const App: React.FC = () => {
         {(appState === 'input' || appState === 'error') && (
           <div className="space-y-20 animate-fade-in-up">
             {/* Hero Section */}
-            <div className="relative overflow-hidden rounded-3xl px-8 py-16 lg:py-24 lg:px-16">
+            <div className="relative overflow-hidden rounded-3xl px-8 py-16 lg:py-24 lg:px-16" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
               <div className="hero-gradient-bg" />
               <div className="relative z-10 max-w-3xl">
                 <div
                   className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8"
                   style={{
-                    background: 'rgba(59, 130, 246, 0.1)',
-                    color: 'var(--accent-blue)',
-                    border: '1px solid rgba(59, 130, 246, 0.2)',
+                    background: 'rgba(160, 82, 45, 0.08)',
+                    color: 'var(--accent-primary)',
+                    border: '1px solid rgba(160, 82, 45, 0.15)',
+                    fontFamily: "'Inter', sans-serif",
                   }}
                 >
                   <Sparkles size={14} /> AI-Powered Recruitment
                 </div>
 
                 <h1
-                  className="text-5xl lg:text-7xl font-black tracking-tight leading-[1.08] mb-6"
-                  style={{ fontFamily: "'Playfair Display', serif", color: 'var(--text-primary)' }}
+                  className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-6"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
                 >
                   <Typewriter text="Hire smarter with" delay={50} />
                   <br />
@@ -172,7 +173,7 @@ const App: React.FC = () => {
 
                 <p
                   className="text-lg lg:text-xl max-w-2xl leading-relaxed mb-12"
-                  style={{ color: 'var(--text-secondary)' }}
+                  style={{ color: 'var(--text-secondary)', fontFamily: "'Lora', serif" }}
                 >
                   Stop manual screening. Let our advanced AI analyze multiple resumes against your job description in seconds and identify your top performers.
                 </p>
@@ -202,12 +203,12 @@ const App: React.FC = () => {
                 >
                   <div className="feature-icon">{feature.icon}</div>
                   <h3
-                    className="font-bold text-base mb-2"
-                    style={{ color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}
+                    className="font-semibold text-base mb-2"
+                    style={{ color: 'var(--text-primary)', fontFamily: "'Cormorant Garamond', serif", fontSize: '1.15rem' }}
                   >
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: "'Lora', serif" }}>
                     {feature.desc}
                   </p>
                 </div>
@@ -243,7 +244,8 @@ const App: React.FC = () => {
                   <h3
                     className="font-bold text-lg pb-4"
                     style={{
-                      fontFamily: "'Outfit', sans-serif",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: 'italic',
                       color: 'var(--text-primary)',
                       borderBottom: '1px solid var(--border-primary)',
                     }}
@@ -253,19 +255,19 @@ const App: React.FC = () => {
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-sm">
-                      <span style={{ color: 'var(--text-secondary)' }} className="font-medium">Job Description</span>
+                      <span style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }} className="font-medium">Job Description</span>
                       <span
                         className="font-bold"
-                        style={{ color: jdText || jdFile ? 'var(--accent-blue)' : 'var(--text-muted)' }}
+                        style={{ color: jdText || jdFile ? 'var(--accent-primary)' : 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}
                       >
                         {jdText || jdFile ? <><Check size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Ready</> : <><Circle size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Missing</>}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span style={{ color: 'var(--text-secondary)' }} className="font-medium">Total Resumes</span>
+                      <span style={{ color: 'var(--text-secondary)', fontFamily: "'Inter', sans-serif" }} className="font-medium">Total Resumes</span>
                       <span
                         className="font-bold"
-                        style={{ color: resumeFiles.length > 0 ? 'var(--accent-blue)' : 'var(--text-muted)' }}
+                        style={{ color: resumeFiles.length > 0 ? 'var(--accent-primary)' : 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}
                       >
                         {resumeFiles.length > 0 ? <><Check size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> {resumeFiles.length} Queue</> : <><Circle size={12} style={{ display: 'inline', verticalAlign: 'middle' }} /> Missing</>}
                       </span>
@@ -284,11 +286,11 @@ const App: React.FC = () => {
                 <div
                   className="p-6 rounded-2xl"
                   style={{
-                    background: 'rgba(59, 130, 246, 0.06)',
-                    border: '1px solid rgba(59, 130, 246, 0.15)',
+                    background: 'rgba(160, 82, 45, 0.04)',
+                    border: '1px solid rgba(160, 82, 45, 0.1)',
                   }}
                 >
-                  <p className="text-xs leading-relaxed font-medium" style={{ color: 'var(--accent-blue)' }}>
+                  <p className="text-xs leading-relaxed font-medium" style={{ color: 'var(--accent-primary)', fontStyle: 'italic', fontFamily: "'Lora', serif" }}>
                     "AI screening significantly reduces time-to-hire by automatically identifying relevant experience matches."
                   </p>
                 </div>
@@ -312,7 +314,7 @@ const App: React.FC = () => {
         )}
       </main>
 
-      {/* ── Footer (ru-ok.in style) ──────────────────────────── */}
+      {/* ── Footer ──────────────────────────────────────────── */}
       <footer
         className="mt-20 py-16 px-6"
         style={{
@@ -324,13 +326,13 @@ const App: React.FC = () => {
           <h2 className="footer-outline-text">SkillMatch</h2>
 
           {/* Tagline */}
-          <p className="text-base max-w-md" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-base max-w-md" style={{ color: 'var(--text-secondary)', fontFamily: "'Lora', serif", fontStyle: 'italic' }}>
             AI-powered resume screening platform built with precision
           </p>
 
           {/* Built By */}
           <div className="flex items-center gap-4">
-            <span className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
+            <span className="text-sm font-medium" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
               Built by
             </span>
             <a
@@ -359,7 +361,7 @@ const App: React.FC = () => {
           </a>
 
           {/* Copyright */}
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-xs" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
             © 2026 All rights reserved
           </p>
         </div>
@@ -394,8 +396,8 @@ const ErrorBanner: React.FC<{ msg: string }> = ({ msg }) => (
   >
     <AlertTriangle size={20} className="shrink-0" style={{ color: 'var(--badge-weak-text)' }} />
     <div className="min-w-0 flex-1">
-      <p className="font-bold text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--badge-weak-text)' }}>Analysis Failed</p>
-      <p className="text-sm break-words" style={{ color: 'var(--badge-weak-text)' }}>{msg}</p>
+      <p className="font-bold text-xs uppercase tracking-wider mb-1" style={{ color: 'var(--badge-weak-text)', fontFamily: "'Inter', sans-serif" }}>Analysis Failed</p>
+      <p className="text-sm break-words" style={{ color: 'var(--badge-weak-text)', fontFamily: "'Lora', serif" }}>{msg}</p>
     </div>
   </div>
 );
@@ -403,19 +405,19 @@ const ErrorBanner: React.FC<{ msg: string }> = ({ msg }) => (
 const ValidationHints: React.FC<{ jdText: string; jdFile: File | null; count: number }> = ({ jdText, jdFile, count }) => (
   <ul className="space-y-2 mt-4 pt-4" style={{ borderTop: '1px solid var(--border-primary)' }}>
     {(!jdText.trim() && !jdFile) && (
-      <li className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+      <li className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
         <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--text-muted)' }} />
         Add a brief job description
       </li>
     )}
     {jdText.trim().length > 0 && jdText.trim().length < 20 && (
-      <li className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--badge-moderate-text)' }}>
+      <li className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--badge-moderate-text)', fontFamily: "'Inter', sans-serif" }}>
         <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--badge-moderate-text)' }} />
         Description is a bit too short
       </li>
     )}
     {count === 0 && (
-      <li className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+      <li className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
         <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--text-muted)' }} />
         Upload at least one candidate resume
       </li>

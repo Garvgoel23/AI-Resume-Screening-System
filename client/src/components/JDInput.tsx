@@ -38,8 +38,9 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
             style={{
-              background: 'rgba(59, 130, 246, 0.1)',
-              border: '1px solid rgba(59, 130, 246, 0.2)',
+              background: 'rgba(160, 82, 45, 0.08)',
+              border: '1px solid rgba(160, 82, 45, 0.15)',
+              color: 'var(--accent-primary)',
             }}
           >
             <FileText size={20} />
@@ -47,11 +48,11 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
           <div className="min-w-0">
             <h2
               className="font-bold text-lg tracking-tight truncate"
-              style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: 'var(--text-primary)', fontStyle: 'italic' }}
             >
               Job Description
             </h2>
-            <p className="text-xs font-medium truncate" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-xs font-medium truncate" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
               Paste text or upload PDF
             </p>
           </div>
@@ -77,6 +78,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                 color: mode === m ? 'var(--text-primary)' : 'var(--text-muted)',
                 boxShadow: mode === m ? 'var(--shadow-card)' : 'none',
                 border: mode === m ? '1px solid var(--border-primary)' : '1px solid transparent',
+                fontFamily: "'Inter', sans-serif",
               }}
             >
               {m === 'text' ? 'Text Input' : 'PDF Upload'}
@@ -104,12 +106,12 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
             className="h-full min-h-[240px] border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 cursor-pointer transition-all duration-200 group"
             style={{
               borderColor: isDragActive
-                ? 'var(--accent-blue)'
+                ? 'var(--accent-primary)'
                 : jdFile
                 ? 'var(--badge-strong-border)'
                 : 'var(--border-secondary)',
               background: isDragActive
-                ? 'rgba(59, 130, 246, 0.05)'
+                ? 'rgba(160, 82, 45, 0.04)'
                 : jdFile
                 ? 'var(--badge-strong-bg)'
                 : 'transparent',
@@ -123,6 +125,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                   style={{
                     background: 'var(--badge-strong-bg)',
                     border: '1px solid var(--badge-strong-border)',
+                    color: 'var(--badge-strong-text)',
                   }}
                 >
                   <FileCheck size={28} />
@@ -131,7 +134,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                   <p className="font-bold text-sm truncate max-w-[200px] mx-auto" style={{ color: 'var(--badge-strong-text)' }}>
                     {jdFile.name}
                   </p>
-                  <p className="text-[10px] font-bold uppercase tracking-widest mt-1" style={{ color: 'var(--text-muted)' }}>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mt-1" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
                     {(jdFile.size / 1024).toFixed(1)} KB
                   </p>
                 </div>
@@ -143,6 +146,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                     background: 'var(--bg-card)',
                     border: '1px solid var(--border-primary)',
                     color: 'var(--badge-weak-text)',
+                    fontFamily: "'Inter', sans-serif",
                   }}
                 >
                   Remove File
@@ -155,6 +159,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                   style={{
                     background: 'var(--bg-card)',
                     border: '1px solid var(--border-primary)',
+                    color: 'var(--accent-primary)',
                   }}
                 >
                   {isDragActive ? <FolderOpen size={28} /> : <Download size={28} />}
@@ -163,7 +168,7 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
                   <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
                     {isDragActive ? 'Drop JD PDF here' : 'Click or drag JD PDF'}
                   </p>
-                  <p className="text-[10px] font-bold uppercase tracking-widest mt-2" style={{ color: 'var(--text-muted)' }}>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mt-2" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
                     Max 10 MB • PDF Only
                   </p>
                 </div>
@@ -180,9 +185,10 @@ const JDInput: React.FC<JDInputProps> = ({ jdText, jdFile, onTextChange, onFileC
             color: 'var(--text-muted)',
             background: 'var(--bg-elevated)',
             border: '1px solid var(--border-primary)',
+            fontFamily: "'Inter', sans-serif",
           }}
         >
-          <Lightbulb size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
+          <Lightbulb size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-warm)' }} /> Clear, concise descriptions with specific requirements result in the highest AI matching accuracy.
         </p>
       </div>
     </div>
